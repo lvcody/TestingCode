@@ -26,6 +26,7 @@ import cookielib
 from pytesser import *
 from PIL import Image
 import pdb
+--哈哈
 
 L=LoginAndOut()
 P=Platform()
