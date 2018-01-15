@@ -26,13 +26,11 @@ import cookielib
 from pytesser import *
 from PIL import Image
 import pdb
---哈哈
 
 L=LoginAndOut()
 P=Platform()
 W=Plugin_Nw()
-#try:
-driver=L.test_login('http://test.ewaytec2001.cn/nwcmwpt/login.jsp','qc','1qaz@WSX')
+driver=L.test_login('http://www.esyun.cn/nwcmwpt/login.jsp','qc','1qaz@WSX')  #http://www.esyun.cn/nwcmwpt/login.jsp / ttp://test.ewaytec2001.cn/nwcmwpt/login.jsp
 	#P.test_Ywy(driver)
 	#P.test_Yygl(driver)
 	#P.test_Gzhao(driver)
@@ -41,9 +39,24 @@ driver=L.test_login('http://test.ewaytec2001.cn/nwcmwpt/login.jsp','qc','1qaz@WS
 	#W.VoteType(driver)
 	#L.test_out(driver)
 	#P.test_Plugin_Pool_Manage(driver)
-
-P.test_EmployeeManage(driver)
-#except Exception as e:
-                #print e
-                #L.test_out(driver)
+    #P.test_EmployeeManage(driver)
+    #P.test_AdministratorManage(driver)
+    #P.test_RoleManage(driver)
+P.test_PowerManage(driver)
 L.test_out(driver)
+
+# try:
+#     driver=L.test_login('http://www.esyun.cn/nwcmwpt/login.jsp','qc','1qaz@WSX')  #http://www.esyun.cn/nwcmwpt/login.jsp / ttp://test.ewaytec2001.cn/nwcmwpt/login.jsp
+# 	#P.test_Ywy(driver)
+# 	#P.test_Yygl(driver)
+# 	#P.test_Gzhao(driver)
+# 	#W.Meeting(driver)
+# 	#W.GameAct(driver)
+# 	#W.VoteType(driver)
+# 	#L.test_out(driver)
+# 	#P.test_Plugin_Pool_Manage(driver)
+#     #P.test_EmployeeManage(driver)
+#     P.test_AdministratorManage(driver)
+# except Exception as e:
+#                 print e
+#                 L.test_out(driver)

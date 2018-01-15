@@ -21,6 +21,9 @@ import os
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 import random
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import  WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 class Platform():
     #业务域
@@ -139,13 +142,11 @@ class Platform():
 
     #员工帐号和通讯录
     def test_EmployeeManage(self,driver):
-        
-        #driver.find_element_by_link_text("员工账号和通讯录").click()
         driver.find_element_by_css_selector("#mCSB_1_container > ul > li:nth-child(5) > a").click()
         driver.switch_to_frame("frmMain")
         time.sleep(2)
-        
-        driver.find_element_by_css_selector("#form > div.topbar.clearfix > h1 > button.green.zerominw").click()
+        WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.CSS_SELECTOR,'#form > div.topbar.clearfix > h1 > button.green.zerominw'))).click()
+        #driver.find_element_by_css_selector("#form > div.topbar.clearfix > h1 > button.green.zerominw").click()
         driver.find_element_by_name("emp.empName").send_keys(u"测试用户")
         driver.find_element_by_id("emp_gender2").click()
         driver.find_element_by_id("birthday").send_keys("2018-01-01")
@@ -164,49 +165,52 @@ class Platform():
         driver.find_element_by_id("keyword").send_keys(u"测试用户")
         driver.find_element_by_id("keyword").send_keys(Keys.ENTER)
         #锁定和解锁
-        time.sleep(3)
+        time.sleep(5)
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.CLASS_NAME,'l-grid-row-cell-btn-checkbox'))).click()
         driver.find_element_by_class_name("l-grid-row-cell-btn-checkbox").click()
         driver.find_element_by_css_selector("#form > div.topbar.clearfix > h1 > button:nth-child(5)").click()
         driver.find_element_by_xpath("/html/body/div[8]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
-        time.sleep(2)
+        time.sleep(5)
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.CLASS_NAME,'l-grid-row-cell-btn-checkbox'))).click()
         driver.find_element_by_class_name("l-grid-row-cell-btn-checkbox").click()
         driver.find_element_by_css_selector("#form > div.topbar.clearfix > h1 > button:nth-child(6)").click()
         driver.find_element_by_xpath("/html/body/div[8]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
         #分配部门
-        time.sleep(2)
+        time.sleep(6)
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.CLASS_NAME,'l-grid-row-cell-btn-checkbox'))).click()
         driver.find_element_by_class_name("l-grid-row-cell-btn-checkbox").click()
         driver.find_element_by_id("updateOrganBtn").click()
-        driver.find_element_by_id("updateOrganTree_5_span").click()
+        driver.find_element_by_id("updateOrganTree_6_span").click()
         driver.find_element_by_css_selector("body > div.l-dialog > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div:nth-child(2) > div.l-dialog-btn-inner").click()
         driver.find_element_by_class_name("l-dialog-btn-inner ").click()
 
         #解除绑定
-        time.sleep(2)
+        time.sleep(12)
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.CLASS_NAME,'l-grid-row-cell-btn-checkbox'))).click()
         driver.find_element_by_class_name("l-grid-row-cell-btn-checkbox").click()
         driver.find_element_by_id("unbindid").click()
         driver.find_element_by_css_selector("body > div.l-dialog > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div:nth-child(2) > div.l-dialog-btn-inner").click()
-        driver.find_element_by_class_name("l-dialog-btn-inner ").click()
-        
+        driver.find_element_by_class_name("l-dialog-btn-inner ").click()      
 
         #管理标签
 
         #新增用户
         driver.find_element_by_id("manageLabelId").click()
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.ID,'addMemberClick'))).click()
         time.sleep(2)
         driver.find_element_by_id("addMemberClick").click()
         driver.find_element_by_id("ui-id-3").click()
         driver.find_element_by_id("pub_person_condition2").send_keys(u"测试用户")
+        time.sleep(10)
         driver.find_element_by_id("pub_person_search").click()
-        time.sleep(2)
-        #driver.find_element_by_css_selector("#pub_person_grid\7c 1\7c r1001\7c c101 > div > span").click()
+        time.sleep(10)
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.XPATH,"//*[@id='pub_person_grid|1|r1001|c101']/div/span"))).click()
         driver.find_element_by_xpath("//*[@id='pub_person_grid|1|r1001|c101']/div/span").click()
         driver.find_element_by_id("pub_selected_add").click()
-        #driver.find_element_by_css_selector("#jbox-state-state0 > div.jbox-button-panel > button:nth-child(2))").click()
         driver.find_element_by_xpath("//*[@id='jbox-state-state0']/div[2]/button[1]").click()
         driver.find_element_by_css_selector("#jbox-state-state0 > div.jbox-button-panel > button").click()
         #移除用户
         time.sleep(1)
-        #driver.find_element_by_css_selector("#memberGrid_0\7c 1\7c r1001\7c c102 > div > span").click()
         driver.find_element_by_xpath("//*[@id='memberGrid_0|1|r1001|c102']/div/span").click()
         driver.find_element_by_id("delMemberClick").click()
         driver.find_element_by_css_selector("#jbox-state-state0 > div.jbox-button-panel > button.jbox-button.jbox-button-focus").click()
@@ -214,13 +218,13 @@ class Platform():
         time.sleep(1)
         driver.find_element_by_id("backClick").click()
 
-
         #删除用户
         time.sleep(2)
         driver.find_element_by_id("keyword").clear()
         driver.find_element_by_id("keyword").send_keys(u"测试用户")
         driver.find_element_by_id("keyword").send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(8)
+        #WebDriverWait(driver,10).until(expected_conditions.element_to_be_clickable((By.CLASS_NAME,'l-grid-row-cell-btn-checkbox'))).click()
         driver.find_element_by_class_name("l-grid-row-cell-btn-checkbox").click()
         driver.find_element_by_css_selector("#form > div.topbar.clearfix > h1 > button.red.zerominw").click()
         driver.find_element_by_css_selector("body > div.l-dialog > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div:nth-child(2) > div.l-dialog-btn-inner").click()
@@ -228,8 +232,143 @@ class Platform():
 
         
         driver.switch_to.parent_frame()
-        
 
+    #系统管理
+    #操作员管理
+    def test_AdministratorManage(self,driver): 
+        #driver.find_element_by_xpath("//*[@id='mCSB_1_container']/ul/li[6]/a").click()
+        driver.find_element_by_link_text(u"  系统管理").click()
+        #driver.find_element_by_class_name("selBg").click()
+        driver.find_element_by_link_text(u"操作员管理").click()
+        driver.switch_to_frame("frmMain")
+        #新增
+        time.sleep(2)
+        driver.find_element_by_class_name("green").click()
+        driver.find_element_by_name("userInfoDto.officalName").send_keys(u"测试管理员")
+        driver.find_element_by_name("userInfoDto.userName").send_keys(u"admin_test"+str(random.randint(1,9999)))
+        time.sleep(1)
+        driver.find_element_by_name("userInfoDto.mobile").send_keys("159998"+str(random.randint(10000,99999)))
+        driver.find_element_by_id("roleIds-2").click()
+        driver.find_element_by_name("pwd1").send_keys("1qaz@WSX")
+        driver.find_element_by_name("repeatPwd").send_keys("1qaz@WSX")
+        driver.find_element_by_id("userInfoDto_remark").send_keys(u"这里是描述")
+        s4=Select(driver.find_element_by_id("domainIds"))
+        s4.select_by_value("1")
+        time.sleep(2)
+        driver.find_element_by_id("saveBtn").click()
+        driver.find_element_by_xpath("/html/body/div[3]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
+        #driver.find_element_by_css_selector("body > div:nth-child(5) > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div.l-dialog-btn > div.l-dialog-btn-inner").click()
+        
+        #锁定和解锁
+        driver.find_element_by_id("keyword").clear()
+        driver.find_element_by_id("keyword").send_keys(u"admin_test")
+        driver.find_element_by_id("keyword").send_keys(Keys.ENTER)
+        time.sleep(5)
+        driver.find_element_by_xpath("//*[@id='usergrid|1|r1001|c102']/div/span").click()
+        driver.find_element_by_id("lockBtn").click()
+        driver.find_element_by_css_selector("body > div.l-dialog.l-dialog-win > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div.l-dialog-btn > div.l-dialog-btn-inner").click()
+        time.sleep(2)
+        driver.find_element_by_xpath("//*[@id='usergrid|1|r1001|c102']/div/span").click()
+        driver.find_element_by_id("unlockBtn").click()
+        driver.find_element_by_css_selector("body > div.l-dialog.l-dialog-win > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div.l-dialog-btn > div.l-dialog-btn-inner").click()
+
+        #微信号解绑
+        time.sleep(2)
+        driver.find_element_by_xpath("//*[@id='usergrid|1|r1001|c102']/div/span").click()
+        driver.find_element_by_id("webchatUnbindBtn").click()
+        driver.find_element_by_css_selector("#jbox-state-state0 > div.jbox-button-panel > button.jbox-button.jbox-button-focus").click()
+        driver.find_element_by_xpath("//*[@id='jbox-state-state0']/div[2]/button").click()
+
+        driver.switch_to.parent_frame()
+
+    #角色管理
+    def test_RoleManage(self,driver): 
+        driver.find_element_by_link_text(u"  系统管理").click()
+        driver.find_element_by_link_text(u"角色管理").click()
+        driver.switch_to_frame("frmMain")
+        #新增
+        time.sleep(2)
+        driver.find_element_by_class_name("green").click()
+        driver.find_element_by_name("role.code").send_keys(str(random.randint(10000,99999)))
+        driver.find_element_by_name("role.name").send_keys(u"测试角色")
+        driver.find_element_by_id("visibleOrganId").click()
+        driver.find_element_by_id("visibleOrganTreeId_1_check").click()
+        driver.find_element_by_id("role_description").send_keys(u"这里是角色描述")
+        driver.find_element_by_class_name("orange").click()
+        driver.find_element_by_xpath("/html/body/div[2]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
+
+        #删除
+        driver.find_element_by_id("keyword").clear()
+        driver.find_element_by_id("keyword").send_keys(u"测试角色")
+        driver.find_element_by_id("keyword").send_keys(Keys.ENTER)
+        time.sleep(2)
+        driver.find_element_by_link_text(u"删除").click()
+        driver.find_element_by_xpath("/html/body/div[4]/table/tbody/tr[2]/td[2]/div/div[3]/div/div[2]/div[3]").click()
+        driver.find_element_by_css_selector("body > div.l-dialog.l-dialog-win > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div.l-dialog-btn > div.l-dialog-btn-inner").click()
+        
+        driver.switch_to.parent_frame()
+    #权限管理
+    def test_PowerManage(self,driver): 
+        n=0
+        while n==0:
+            try:
+                driver.find_element_by_link_text(u"  系统管理").click()
+                driver.find_element_by_link_text(u"权限管理").click()
+                driver.switch_to_frame("frmMain")
+                #新增权限
+                time.sleep(2)
+                driver.find_element_by_class_name("green").click()
+                driver.find_element_by_name("permission.code").send_keys(str(random.randint(10000,99999)))
+                driver.find_element_by_name("permission.name").send_keys(u"测试权限")
+                driver.find_element_by_id("SWFUpload_0").click()
+                time.sleep(2)
+                os.system(r"C:\upfile.exe")
+                time.sleep(5)
+                driver.find_element_by_name("organ.weight").send_keys("11")
+                driver.find_element_by_xpath("//*[@id='organForm']/table/tbody/tr[7]/td/button[1]").click()
+                driver.find_element_by_xpath("/html/body/div[6]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
+
+                time.sleep(2)
+                #新增添加子权限
+                driver.find_element_by_link_text(u"添加子权限").click()
+                time.sleep(2)
+                driver.find_element_by_css_selector("#cCode").send_keys(str(random.randint(1,9999)))
+                driver.find_element_by_css_selector("#cname").send_keys(u"测试子权限")
+                driver.find_element_by_xpath("/html/body/div[3]/div[2]/div[2]/form/table/tbody/tr[7]/td/button[1]").click()
+                driver.find_element_by_xpath("/html/body/div[6]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
+
+
+                #删除
+                time.sleep(2)
+                driver.find_element_by_id("treeDemo_1_switch").click()
+                driver.find_element_by_css_selector("#treeDemo_2_a > span.treeGridTd_6 > a:nth-child(3)").click()
+                driver.find_element_by_xpath("/html/body/div[6]/table/tbody/tr[2]/td[2]/div/div[3]/div/div[2]/div[3]").click()
+                driver.find_element_by_xpath("/html/body/div[6]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
+
+                time.sleep(2)
+                driver.find_element_by_xpath("//*[@id='treeDemo_1_a']/span[6]/a[3]").click()
+                driver.find_element_by_css_selector("body > div.l-dialog > table > tbody > tr:nth-child(2) > td.l-dialog-cc > div > div.l-dialog-buttons > div > div:nth-child(2) > div.l-dialog-btn-inner").click()
+                driver.find_element_by_xpath("/html/body/div[6]/table/tbody/tr[2]/td[2]/div/div[2]/div/div[1]/div[3]").click()
+                n=1
+            except Exception as e:
+                print e
+                n=0
+                continue
+            
+        driver.switch_to.parent_frame()
+
+
+            
+
+
+
+
+
+
+
+
+
+    
 
     #企业号平台的应用管理    
     def test_Yygl(self,driver):

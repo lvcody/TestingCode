@@ -20,7 +20,8 @@ from pytesser import *
 from PIL import Image
 import os
 import pdb
-
+from selenium.webdriver.support.ui import  WebDriverWait
+from selenium.webdriver.support import expected_conditions
 
 
 ##class Login(unittest.TestCase):
